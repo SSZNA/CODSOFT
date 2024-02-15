@@ -27,42 +27,42 @@ scrollbar.config(command=task_listbox.yview)
 tasks = []
 
 
-def add_task():
+def AddTask():
     task = entry.get()
     if task == "":
         messagebox.showwarning("Warning", "Kindly enter a task")
     else:
         task_listbox.insert(END, task)
         tasks.append(task)
-        write_tasks_in_file()
+        WriteTasksInFile()
         entry.delete(0, END)
 
 
-add_task_button = Button(text="Add task", bg="light pink", fg="black", command=add_task)
+add_task_button = Button(text="Add task", bg="light pink", fg="black", command=AddTask)
 add_task_button.pack(pady=30)
 
 
-def delete_task():
+def DeleteTask():
     try:
         selected_index = task_listbox.curselection()[0]
         del tasks[selected_index]
         task_listbox.delete(selected_index)
-        write_tasks_in_file()
+        WriteTasksInFile()
     except IndexError:
         messagebox.showwarning("Warning", "Please select a task to delete.")
 
 
-delete_task_button = Button(text="Delete task", bg="light green", fg="black", command=delete_task)
+delete_task_button = Button(text="Delete task", bg="light green", fg="black", command=DeleteTask)
 delete_task_button.pack(pady=10)
 
 
-def write_tasks_in_file():
+def WriteTasksInFile():
     with open("list.txt", "w") as f:
         for task in tasks:
             f.write(task + "\n")
 
 
-def load_from_file():
+def loadFromFile():
     try:
         with open("list.txt", "r") as f:
             for line in f:
@@ -72,7 +72,7 @@ def load_from_file():
         pass
 
 
-def update_task():
+def UpdateTask():
     try:
         selected_index = task_listbox.curselection()[0]
         updated_task = entry.get()
@@ -82,15 +82,15 @@ def update_task():
             task_listbox.delete(selected_index)
             task_listbox.insert(selected_index, updated_task)
             tasks[selected_index] = updated_task
-            write_tasks_in_file()
+            WriteTasksInFile()
             entry.delete(0, END)
     except IndexError:
         messagebox.showwarning("Warning", "Please select a task to update.")
 
 
-update_task_button = Button(text="Update task",bg="light blue", fg="black", command=update_task)
+update_task_button = Button(text="Update task",bg="light blue", fg="black", command=UpdateTask)
 update_task_button.pack(pady=10)
 
-load_from_file()
+loadFromFile()
 
 main.mainloop()
