@@ -38,8 +38,8 @@ def AddTask():
         entry.delete(0, END)
 
 
-add_task_button = Button(text="Add task", bg="light pink", fg="black", command=AddTask)
-add_task_button.pack(pady=30)
+AddTaskButton = Button(text="Add task", bg="light pink", fg="black", command=AddTask)
+AddTaskButton.pack(pady=30)
 
 
 def DeleteTask():
@@ -52,8 +52,8 @@ def DeleteTask():
         messagebox.showwarning("Warning", "Select a task to be deleted!.")
 
 
-delete_task_button = Button(text="Delete task", bg="light green", fg="black", command=DeleteTask)
-delete_task_button.pack(pady=10)
+DeleteTaskButton = Button(text="Delete task", bg="light green", fg="black", command=DeleteTask)
+DeleteTaskButton.pack(pady=10)
 
 
 def WriteTasksInFile():
@@ -89,8 +89,8 @@ def UpdateTask():
         messagebox.showwarning("Warning", "Please select a task to change!")
 
 
-update_task_button = Button(text="Update task",bg="light blue", fg="black", command=UpdateTask)
-update_task_button.pack(pady=10)
+UpdateTaskButton = Button(text="Update task",bg="light blue", fg="black", command=UpdateTask)
+UpdateTaskButton.pack(pady=10)
 
 loadFromFile()
 
