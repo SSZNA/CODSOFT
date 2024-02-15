@@ -19,10 +19,10 @@ frame = Frame(main, bg="#FFFDD0")
 frame.pack(side=RIGHT)
 scrollbar = Scrollbar(frame)
 scrollbar.pack(side=RIGHT, fill=Y)
-task_listbox = Listbox(frame, width=30, height=14, font=('Helvetica', 14), borderwidth=5, relief=RIDGE, fg="black",
+list = Listbox(frame, width=30, height=14, font=('Helvetica', 14), borderwidth=5, relief=RIDGE, fg="black",
                        selectbackground="grey", yscrollcommand=scrollbar.set)
-task_listbox.pack(side=LEFT, fill=BOTH)
-scrollbar.config(command=task_listbox.yview)
+list.pack(side=LEFT, fill=BOTH)
+scrollbar.config(command=list.yview)
 
 tasks = []
 
@@ -30,9 +30,9 @@ tasks = []
 def AddTask():
     task = entry.get()
     if task == "":
-        messagebox.showwarning("Warning", "Kindly enter a task")
+        messagebox.showwarning("Warning", "Enter a task to be added!")
     else:
-        task_listbox.insert(END, task)
+        list.insert(END, task)
         tasks.append(task)
         WriteTasksInFile()
         entry.delete(0, END)
@@ -44,12 +44,12 @@ add_task_button.pack(pady=30)
 
 def DeleteTask():
     try:
-        selected_index = task_listbox.curselection()[0]
-        del tasks[selected_index]
-        task_listbox.delete(selected_index)
+        sindex = list.curselection()[0]
+        del tasks[sindex]
+        list.delete(sindex)
         WriteTasksInFile()
     except IndexError:
-        messagebox.showwarning("Warning", "Please select a task to delete.")
+        messagebox.showwarning("Warning", "Select a task to be deleted!.")
 
 
 delete_task_button = Button(text="Delete task", bg="light green", fg="black", command=DeleteTask)
@@ -58,34 +58,35 @@ delete_task_button.pack(pady=10)
 
 def WriteTasksInFile():
     with open("list.txt", "w") as f:
-        for task in tasks:
-            f.write(task + "\n")
+        for i in tasks:
+            f.write(i + "\n")
 
 
 def loadFromFile():
     try:
         with open("list.txt", "r") as f:
             for line in f:
-                tasks.append(line.strip())
-                task_listbox.insert(END, line.strip())
+                line = line.strip()
+                tasks.append(line)
+                list.insert(END, line)
     except FileNotFoundError:
         pass
 
 
 def UpdateTask():
     try:
-        selected_index = task_listbox.curselection()[0]
-        updated_task = entry.get()
-        if updated_task.strip() == "":
-            messagebox.showwarning("Warning", "Please enter an updated task.")
+        currentindex = list.curselection()[0]
+        UpdatedTask = entry.get()
+        if UpdatedTask == "":
+            messagebox.showwarning("Warning", "Please enter changed task!")
         else:
-            task_listbox.delete(selected_index)
-            task_listbox.insert(selected_index, updated_task)
-            tasks[selected_index] = updated_task
+            list.delete(currentindex)
+            list.insert(currentindex, UpdatedTask)
+            tasks[currentindex] = UpdatedTask
             WriteTasksInFile()
             entry.delete(0, END)
     except IndexError:
-        messagebox.showwarning("Warning", "Please select a task to update.")
+        messagebox.showwarning("Warning", "Please select a task to change!")
 
 
 update_task_button = Button(text="Update task",bg="light blue", fg="black", command=UpdateTask)
