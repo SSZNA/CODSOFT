@@ -29,7 +29,7 @@ class ContactBook(list):
             print("Contact not found for deletion!")
 
     def __str__(self):
-        string="Name,Phone Number,Email Address\n"
+        string="Name,Phone Number,Email Address:\n"
         for item in self:
             string+=item[0]+", "+item[1]+", "+item[2]+"\n"
         return string
