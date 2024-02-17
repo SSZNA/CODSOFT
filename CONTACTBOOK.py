@@ -74,7 +74,7 @@ def UserInterface():
                 try:
                     number = int(input("Enter number: "))
                 except ValueError:
-                    print("Incorrect format for number!")
+                    print("Invalid entry for number!")
                     continue
 
                 email=input("Enter email: ")
@@ -102,9 +102,11 @@ def UserInterface():
                 NewName = input("Enter new name: ")
                 if not isinstance(NewName, str):
                     raise TypeError("Invalid format for name!")
-                NewNumber = input("Enter new  number: ")
-                if not NewNumber.isdigit():
-                    raise ValueError("Incorrect number entered!")
+                try:
+                    NewNumber=int(input("Enter new number: "))
+                except ValueError:
+                    print("Invalid entry for number!")
+                    continue
                 NewEmail = input("Enter new email: ")
                 contactlist.UpdateContact(name,[NewName,NewNumber,NewEmail])
                 WriteInFile(contactlist)
