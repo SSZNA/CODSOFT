@@ -4,7 +4,7 @@ import random
 def CreatePassword(Passwordlength):
     characters = []
     characters.extend(string.ascii_lowercase)
-    characters.extend(string.ascii_lowercase)
+    characters.extend(string.ascii_uppercase)
     characters.extend(string.digits)
     characters.extend(string.punctuation)
     random.shuffle(characters)
