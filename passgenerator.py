@@ -8,7 +8,6 @@ def CreatePassword(Passwordlength):
     characters.extend(string.ascii_uppercase)
     characters.extend(string.digits)
     characters.extend(string.punctuation)
-    print(characters)
     characters = list(characters)
     random.shuffle(characters)
     print("The generated password is: ","".join(characters[0:Passwordlength]))
