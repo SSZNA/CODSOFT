@@ -1,4 +1,3 @@
-Samana,111,samanazehra104@gmail.com
-Jhon,345,Jhon555@gmail.com
-Fizza,345,fizza455@gmail.com
+Ali,455,ali555@gmail.com
+Sara,654,sara345@gmail.com
 

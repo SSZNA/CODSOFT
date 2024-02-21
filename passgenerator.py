@@ -12,6 +12,7 @@ def CreatePassword(Passwordlength):
 
 
 def main():
+    print("     PASSWORD GENERATOR    ")
     try:
         PasswordLength = int(input("Enter the length of password: "))
         assert PasswordLength > 0, "Length of password must be greater than zero!"
