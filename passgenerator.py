@@ -1,12 +1,15 @@
 import string
 import random
+from collections import deque
 
 def CreatePassword(Passwordlength):
-    characters = []
+    characters = deque()
     characters.extend(string.ascii_lowercase)
     characters.extend(string.ascii_uppercase)
     characters.extend(string.digits)
     characters.extend(string.punctuation)
+    print(characters)
+    characters = list(characters)
     random.shuffle(characters)
     print("The generated password is: ","".join(characters[0:Passwordlength]))
 
